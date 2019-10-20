@@ -1,0 +1,22 @@
+{
+  "name": "gateway-hue-review",
+  "version": "1.0.0",
+  "description": "The Main GraphQL API gateway for all Hue Review clients.",
+  "main": "index.js",
+  "scripts": {
+    "prestart": "clear",
+    "start": "nodemon -r dotenv/config . -e graphql,js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^1.19.4"
+  },
+  "dependencies": {
+    "@apollo/gateway": "^0.6.7",
+    "apollo-server": "^2.9.6",
+    "dotenv": "^8.2.0",
+    "graphql": "^14.5.8"
+  }
+}

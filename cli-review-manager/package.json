@@ -1,0 +1,15 @@
+{
+  "name": "cli-review-manager",
+  "version": "1.0.0",
+  "description": "An command line application for interfacing with the [Review Service](../service-reviews).",
+  "main": "index.js",
+  "scripts": {
+    "postinstall": "npm link"
+  },
+  "bin": {
+    "reviews": "index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
