@@ -1,50 +1,27 @@
-"""
-The Date and Time represented in ISO format
-"""
 scalar DateTime
 
-"""
-👨‍💻👩‍💻 A person who uses any application that incorporates this account service.
-"""
 type User @key(fields: "email") {
-  "The user's email address. This email is used to uniquly identify users accross applications."
   email: ID!
-  "The full name of each user"
   name: String!
-  "The date and time that the user account was created"
   created: DateTime!
 }
 
 type Query {
-  "🧖🏻‍♂️ This query identifies the curren user. Users are identified through JWT tokens that are included in \"Authorization\" headers."
   me: User
 }
 
-"""
-Once a user has successfully created an account or authroized themselves their JWT token is returned along with their account information in this payload."
-"""
 type AuthPayload {
-  "A JWT token that can be used to uniquly identify each user. Add the value of this token to the \"Authorization\" header"
   token: String!
-  "💁‍♂️ informaiton about the user who has just been created or authorized"
   user: User!
 }
 
-"""
-In order to create a new user we must collect that user's \"email\" address, \"name\" full name, and the \"password\" that they will use in future logins."
-"""
 input CreateUserForm {
-  "The unique email address for each user. If a user has already created an account with the email address an error will be thrown."
   email: String!
-  "The full name of the new user"
   name: String!
-  "A password that can be used in the future to authorize this user."
   password: String!
 }
 
 type Mutation {
-  "Create a new user account. This new user can access any gateway that incorporates this account service."
   createAccount(input: CreateUserForm!): AuthPayload!
-  "Returning users can login and retreive a new token with this \"authorize\" mutation"
   authorize(email: String!, password: String!): AuthPayload!
 }

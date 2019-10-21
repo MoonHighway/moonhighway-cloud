@@ -1,65 +1,36 @@
-"""
-The Date and Time represented in ISO format
-"""
 scalar DateTime
 
-"""
-🎨 🌄 🎮🍸 An item that can be reviewed. The review service supports adding reviews and commments to all kinds items that are extened in the services that implement this review service. These items could be colors, photos, or any type of item that may need to be reviewed in the future.
-"""
 type ReviewableItem @key(fields: "itemID") {
-  "The unique identifier for the reviewed item, this is used to find the reviews for the item"
   itemID: ID!
-  "The total advrage rating for the current reviewable item"
   advRating: Float!
-  "If the user who is currently logged in has created a review for this item alreayd, they can find that review here."
   yourReview: Review
-  "All of the reivews for the reviewable item."
   reviews: [Review!]!
 }
 
-"""
-⭐️ ⭐️ ⭐️ ⭐️ ⭐️ A user's review of any item. The review is based on a star rating, 1 - 5, along with a comment.
-"""
 type Review @key(fields: "id") {
-  "An identifier that can be used to refrence a review."
   id: ID!
-  "The unique identifier for the item that has been reviewed."
   itemID: ID!
-  "The rating that the user has assigned to this review."
   rating: Int!
-  "An optional comment that the user may have left for this review."
   comment: String
-  "The user who created this review."
   user: User!
-  "The date and time that this review was created."
   created: DateTime!
 }
 
 extend type User @key(fields: "email") {
-  "The external user's email addressed used to refrence the user in the accounts service"
   email: ID! @external
 }
 
 type Query {
-  "The total number of reviews that have been created by app"
   totalReviews: Int!
-  "All of the reviews that have been created for the current app"
   allReviews: [Review!]!
 }
 
-"""
-👨‍💻 The information that needs to be collected in order to create and save a new review.
-"""
 input ReviewForm {
-  "The unique identifier for the item to be reviewed."
   itemID: ID!
-  "The rating, 1 - 5, for the review."
   rating: Int!
-  "An optional comment for the review."
   comment: String
 }
 
 type Mutation {
-  "Adds a new review to the current app."
   addReview(input: ReviewForm!): Review!
 }

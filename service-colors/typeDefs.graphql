@@ -1,0 +1,33 @@
+scalar DateTime
+
+type Color {
+  id: ID!
+  title: String!
+  value: String!
+  created: DateTime!
+  createdBy: User!
+  reviews: ReviewableItem!
+}
+
+extend type User @key(fields: "email") {
+  email: ID! @external
+  postedColors: [Color!]!
+}
+
+extend type ReviewableItem @key(fields: "itemID") {
+  itemID: ID! @external
+}
+
+extend type Review @key(fields: "id") {
+  id: ID! @external
+  itemID: ID! @external
+  color: Color! @requires(fields: "itemID")
+}
+
+type Query {
+  totalColors: Int!
+  allColors(email: ID): [Color!]!
+}
+type Mutation {
+  addColor(title: String!, value: String!): Color!
+}

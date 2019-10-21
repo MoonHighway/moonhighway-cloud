@@ -1,10 +1,10 @@
 const Redis = require("ioredis");
 const db = new Redis(process.env.REDIS_URL);
 
-const clearAllKeys = async search => {
+const clearAllKeys = async (search, label = "removing") => {
   const keys = await db.keys(search || "*");
   const pipeline = db.pipeline();
-  console.log(`removing ${keys.length} reviews`);
+  console.log(`${label} ${keys.length} reviews`);
   keys.forEach(key => pipeline.del(key));
   pipeline.exec();
 };
@@ -29,11 +29,12 @@ const findReviews = async (search = `review:*`) => {
   return await Promise.all(promises);
 };
 
-const createContext = () => ({ req }) => {
+const createContext = async () => ({ req }) => {
   return {
     db,
     countReviews,
     findReviews,
+    clearAllKeys,
     currentUser: req.headers["user-email"],
     appID: req.headers["app-id"]
   };

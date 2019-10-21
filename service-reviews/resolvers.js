@@ -1,7 +1,9 @@
 module.exports = {
   Query: {
-    totalReviews: (_, args, { countReviews }) => countReviews(),
-    allReviews: (_, args, { findReviews }) => findReviews()
+    totalReviews: (_, args, { countReviews, appID }) =>
+      countReviews(`review:${appID}:*`),
+    allReviews: (_, args, { findReviews, appID }) =>
+      findReviews(`review:${appID}:*`)
   },
   Mutation: {
     async addReview(
@@ -9,7 +11,7 @@ module.exports = {
       {
         input: { itemID, rating, comment }
       },
-      { db, currentUser, appID }
+      { db, currentUser, appID, clearAllKeys }
     ) {
       if (!currentUser) {
         throw new Error(
@@ -29,6 +31,10 @@ module.exports = {
         );
       }
 
+      await clearAllKeys(
+        `review:${appID}:${currentUser}:${itemID}:*`,
+        "replacing"
+      );
       const created = new Date().toISOString();
       const key = `review:${appID}:${currentUser}:${itemID}:${rating}:${created}`;
       await db.set(key, comment);
@@ -42,7 +48,7 @@ module.exports = {
       };
     }
   },
-  ItemReview: {
+  ReviewableItem: {
     yourReview: async (
       { itemID },
       args,
@@ -53,7 +59,7 @@ module.exports = {
       );
       return review;
     },
-    __resolveReference: async ({ itemID }, args, { appID, findReviews }) => {
+    __resolveReference: async ({ itemID }, { appID, findReviews }) => {
       const reviews = await findReviews(`review:${appID}:*:${itemID}:*`);
       const ratings = reviews.map(r => r.rating);
       const total =
@@ -71,7 +77,7 @@ module.exports = {
     }
   },
   Review: {
-    __resolveReference: async ({ id }, args, { db }) => {
+    __resolveReference: async ({ id }, { db }) => {
       const [, , email, itemID, rating, created] = id.split(":");
       const comment = await db.get(id);
       return {
