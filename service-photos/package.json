@@ -17,6 +17,7 @@
     "@apollo/federation": "^0.10.2",
     "apollo-server": "^2.9.6",
     "dotenv": "^8.2.0",
-    "graphql": "^14.5.8"
+    "graphql": "^14.5.8",
+    "mongodb": "^3.3.3"
   }
 }

@@ -1,0 +1,40 @@
+scalar DateTime
+scalar Upload
+
+type Photo {
+  id: ID!
+  name: String!
+  description: String
+  category: PhotoCategory!
+  url: String
+  created: DateTime
+  postedBy: User!
+}
+
+extend type User @key(fields: "email") {
+  email: ID! @external
+  postedPhotos: [Photo!]!
+}
+
+enum PhotoCategory {
+  PORTRAIT
+  LANDSCAPE
+  ACTION
+  SELFIE
+}
+
+input PostPhotoForm {
+  name: String
+  description: String
+  category: PhotoCategory = PORTRAIT
+  file: Upload!
+}
+
+type Query {
+  totalPhotos: Int!
+  allPhotos: [Photo!]!
+  Photo(id: ID!): Photo!
+}
+type Mutation {
+  postPhoto(input: PostPhotoForm!): Photo!
+}

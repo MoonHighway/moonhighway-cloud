@@ -1,5 +1,5 @@
 .App {
-  text-align: center;
+  text-align: left;
 }
 
 .App-logo {
@@ -19,4 +19,28 @@
 
 .App-link {
   color: #09d3ac;
+}
+
+input,
+textarea {
+  width: calc(100% - 1.4em);
+}
+
+input,
+textarea,
+button {
+  display: block;
+  padding: 0.2em;
+  margin: 0.5em;
+  font-size: 1.4em;
+  text-align: left;
+}
+
+pre {
+  float: left;
+}
+
+img {
+  width: 250px;
+  float: left;
 }
