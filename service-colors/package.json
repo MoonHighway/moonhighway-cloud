@@ -4,8 +4,8 @@
   "description": "A service to manage all of the colors posted to the hue-review.",
   "main": "index.js",
   "scripts": {
-    "prestart": "clear",
-    "start": "nodemon -r dotenv/config . -e graphql,js"
+    "start": "node -r dotenv/config .",
+    "start:dev": "nodemon -r dotenv/config . -e graphql,js"
   },
   "keywords": [],
   "author": "",

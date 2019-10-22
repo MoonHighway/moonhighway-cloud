@@ -4,8 +4,8 @@
   "description": "The Main GraphQL API gateway for all Hue Review clients.",
   "main": "index.js",
   "scripts": {
-    "prestart": "clear",
-    "start": "nodemon -r dotenv/config . -e graphql,js"
+    "start": "node -r dotenv/config .",
+    "start:dev": "nodemon -r dotenv/config . -e graphql,js"
   },
   "keywords": [],
   "author": "",

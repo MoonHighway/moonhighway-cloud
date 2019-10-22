@@ -83,6 +83,8 @@ const gateway = new ApolloGateway({
   const server = new ApolloServer({ schema, executor, context });
 
   server.listen(process.env.PORT).then(({ url }) => {
-    console.log(`🌄 🌅 🌆 🌉 🌌 ${url}`);
+    console.log(
+      `    🌄  🌅  🌆  🌉  🌌   - Rowdy Gateway API running at: ${url}`
+    );
   });
 })();

@@ -50,7 +50,9 @@ const start = async () => {
   const server = new ApolloServer({ schema, executor, context });
 
   server.listen(process.env.PORT).then(({ url }) => {
-    console.log(`🌄 🌅 🌆 🌉 🌌 ${url}`);
+    console.log(
+      `      🎨  🖍  👩‍💻  ✅   - The Hue Review Gateway API running at ${url}`
+    );
   });
 };
 

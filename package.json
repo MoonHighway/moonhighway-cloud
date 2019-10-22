@@ -1,0 +1,13 @@
+{
+  "name": "sample-cloud",
+  "version": "1.0.0",
+  "description": "A sample cloud of examples built on Apollo Federation.",
+  "main": "index.js",
+  "scripts": {
+    "install": "(cd service-accounts; npm i; cd ..;) & (cd service-reviews; npm i; cd ..;) & (cd service-colors; npm i; cd ..;) & (cd service-photos; npm i; cd ..;) & (cd gateway-rowdy; npm i; cd ..;) & (cd gateway-hue-review; npm i; cd ..;)",
+    "start": "((cd service-accounts; npm start) & (cd service-reviews; npm start)& (cd service-colors; npm start) & (cd service-photos; npm start)) & ((sleep 2; cd gateway-rowdy; npm start) & (sleep 2; cd gateway-hue-review; npm start))"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

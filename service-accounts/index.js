@@ -21,7 +21,7 @@ const start = async () => {
     ])
   });
   server.listen(process.env.PORT).then(({ url }) => {
-    console.log(` 👨‍👨‍👧‍👦  - Account service running at: ${url}`);
+    console.log(`     👨‍👨‍👧‍👦   - Account service running at: ${url}`);
   });
 };
 

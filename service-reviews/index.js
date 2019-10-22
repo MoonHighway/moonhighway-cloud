@@ -22,7 +22,7 @@ const start = async () => {
     ])
   });
   server.listen(process.env.PORT).then(({ url }) => {
-    console.log(`⭐️ ⭐️ ⭐️ ⭐️ ⭐️ Review service running at: ${url}`);
+    console.log(` ⭐️ ⭐️ ⭐️ ⭐️ ⭐️  - Review service running at: ${url}`);
   });
 };
 

@@ -27,12 +27,12 @@ const start = async () => {
 
   photoServiceApp.listen(process.env.PHOTO_FILE_PORT, () => {
     console.log(
-      `🗄  photo files being served at: http://localhost:${process.env.PHOTO_FILE_PORT}`
+      `         🗄  - photo files being served at: http://localhost:${process.env.PHOTO_FILE_PORT}`
     );
   });
 
   server.listen(process.env.PORT).then(({ url }) => {
-    console.log(`🖼 📸 ${url}`);
+    console.log(`       🖼 📸  - ${url}`);
   });
 };
 

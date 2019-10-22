@@ -4,8 +4,8 @@
   "description": "This is the main GraphQL Gateway for all interaction with Rowdy clients.",
   "main": "index.js",
   "scripts": {
-    "prestart": "clear",
-    "start": "nodemon -r dotenv/config . -e graphql,js"
+    "start": "node -r dotenv/config .",
+    "start:dev": "nodemon -r dotenv/config . -e graphql,js"
   },
   "keywords": [],
   "author": "",

@@ -4,9 +4,9 @@
   "description": "A service to reviews and comments for all users across multiple applications.",
   "main": "index.js",
   "scripts": {
-    "prestart": "clear",
-    "start": "nodemon -r dotenv/config . -e graphql,js",
-    "start:dev": "npm start -- --clearReviews"
+    "start": "node -r dotenv/config .",
+    "start:dev": "nodemon -r dotenv/config . -e graphql,js",
+    "start:fresh": "npm start -- --clearReviews"
   },
   "keywords": [],
   "author": "",

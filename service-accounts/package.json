@@ -4,8 +4,8 @@
   "description": "A service to manager users and accounts across multiple applications.",
   "main": "index.js",
   "scripts": {
-    "prestart": "clear",
-    "start": "nodemon -r dotenv/config . -e graphql,js"
+    "start": "node -r dotenv/config .",
+    "start:dev": "nodemon -r dotenv/config . -e graphql,js"
   },
   "keywords": [],
   "author": "",
