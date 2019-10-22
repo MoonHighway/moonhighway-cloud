@@ -49,10 +49,16 @@ module.exports = {
     url: parent =>
       `http://localhost:${process.env.PHOTO_FILE_PORT}/${parent.id ||
         parent._id.toString()}.jpg`,
-    postedBy: ({ user }) => ({ email: user })
+    postedBy: ({ user }) => ({ email: user }),
+    reviews: ({ _id }) => ({ itemID: _id })
+  },
+  Review: {
+    photo: async ({ itemID }, args, { photos }) =>
+      photos.findOne({ _id: ObjectID(itemID) })
   },
   User: {
-    postedPhotos: ({ user }, args, { photos }) =>
-      photos.find({ email: user }).toArray()
+    postedPhotos: ({ email }, args, { photos }) => {
+      return photos.find({ user: email }).toArray();
+    }
   }
 };

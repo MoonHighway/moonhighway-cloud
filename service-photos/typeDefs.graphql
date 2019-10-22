@@ -9,11 +9,22 @@ type Photo {
   url: String
   created: DateTime
   postedBy: User!
+  reviews: ReviewableItem!
 }
 
 extend type User @key(fields: "email") {
   email: ID! @external
   postedPhotos: [Photo!]!
+}
+
+extend type ReviewableItem @key(fields: "itemID") {
+  itemID: ID! @external
+}
+
+extend type Review @key(fields: "id") {
+  id: ID! @external
+  itemID: ID! @external
+  photo: Photo! @requires(fields: "itemID")
 }
 
 enum PhotoCategory {

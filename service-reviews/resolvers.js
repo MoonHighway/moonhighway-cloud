@@ -64,7 +64,7 @@ module.exports = {
       const ratings = reviews.map(r => r.rating);
       const total =
         ratings.length > 1
-          ? ratings.reduce((p, n) => p + n)
+          ? ratings.reduce((p, n) => parseInt(p) + parseInt(n))
           : ratings.length === 1
           ? ratings[0]
           : 0;
