@@ -6,7 +6,7 @@ type Color {
   value: String!
   created: DateTime!
   createdBy: User!
-  reviews: ReviewableItem!
+  # reviews: ReviewableItem!
 }
 
 extend type User @key(fields: "email") {
@@ -14,15 +14,15 @@ extend type User @key(fields: "email") {
   postedColors: [Color!]!
 }
 
-extend type ReviewableItem @key(fields: "itemID") {
-  itemID: ID! @external
-}
+# extend type ReviewableItem @key(fields: "itemID") {
+#   itemID: ID! @external
+# }
 
-extend type Review @key(fields: "id") {
-  id: ID! @external
-  itemID: ID! @external
-  color: Color! @requires(fields: "itemID")
-}
+# extend type Review @key(fields: "id") {
+#   id: ID! @external
+#   itemID: ID! @external
+#   color: Color! @requires(fields: "itemID")
+# }
 
 type Query {
   totalColors: Int!
