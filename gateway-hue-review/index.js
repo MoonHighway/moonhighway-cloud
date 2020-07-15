@@ -45,9 +45,8 @@ const gateway = new ApolloGateway({
 });
 
 const start = async () => {
-  const { schema, executor } = await gateway.load();
   const context = ({ req }) => ({ Authorization: req.headers.authorization });
-  const server = new ApolloServer({ schema, executor, context });
+  const server = new ApolloServer({ gateway, subscriptions: false, context });
 
   server.listen(process.env.PORT).then(({ url }) => {
     console.log(`\n\n🖍`);

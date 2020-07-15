@@ -17,22 +17,26 @@ const start = async () => {
         resolvers,
         typeDefs: gql`
           ${typeDefs}
-        `
-      }
-    ])
+        `,
+      },
+    ]),
   });
 
   const photoServiceApp = express();
   photoServiceApp.use(express.static(path.join(__dirname, "assets", "photos")));
 
   photoServiceApp.listen(process.env.PHOTO_FILE_PORT, () => {
+    console.log(`\n\n\n🗄`);
+    console.log(`🗄 🗄       Photo File Server`);
     console.log(
-      `         🗄  - photo files being served at: http://localhost:${process.env.PHOTO_FILE_PORT}`
+      `🗄         running at http://localhost:${process.env.PHOTO_FILE_PORT}`
     );
   });
 
   server.listen(process.env.PORT).then(({ url }) => {
-    console.log(`       🖼 📸  - ${url}`);
+    console.log(`\n\n🖼`);
+    console.log(`📸 📸     Photo Service`);
+    console.log(`🖼         running at ${url}\n\n\n`);
   });
 };
 

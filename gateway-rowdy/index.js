@@ -7,7 +7,7 @@ const path = require("path");
 const saveFile = (stream, path) =>
   new Promise((resolve, reject) => {
     stream
-      .on("error", error => {
+      .on("error", (error) => {
         if (stream.truncated) {
           fs.unlinkSync(path);
         }
@@ -19,20 +19,26 @@ const saveFile = (stream, path) =>
 
 const gateway = new ApolloGateway({
   serviceList: [
-    { name: "users", url: "http://localhost:4000" },
-    { name: "reviews", url: "http://localhost:4001" },
-    { name: "photos", url: "http://localhost:4004" }
+    { name: "users", url: "http://localhost:5000" },
+    { name: "reviews", url: "http://localhost:5002" },
+    { name: "photos", url: "http://localhost:5003" },
   ],
+  introspectionHeaders: {
+    "app-id": "rowdy",
+  },
   buildService({ url }) {
     return new RemoteGraphQLDataSource({
       url,
       async willSendRequest({ request, context }) {
-        if (request.variables.input && request.variables.input.file) {
+        if (
+          request.variables &&
+          request.variables.input &&
+          request.variables.input.file
+        ) {
           const file = await request.variables.input.file;
           const stream = file.createReadStream();
           const timestamp = new Date().toISOString();
           const filename = `${timestamp}-${file.filename}`;
-
           try {
             await saveFile(
               stream,
@@ -42,7 +48,6 @@ const gateway = new ApolloGateway({
             console.error("Error saving file");
             console.error(fileError);
           }
-
           request.variables.input.file = filename;
         }
 
@@ -54,37 +59,38 @@ const gateway = new ApolloGateway({
             method: "POST",
             headers: {
               "Content-Type": "application/json",
-              Authorization: context.Authorization
+              Authorization: context.Authorization,
             },
-            body: JSON.stringify({ query })
+            body: JSON.stringify({ query }),
           };
           const {
-            data: { me }
-          } = await fetch("http://localhost:4000", options)
-            .then(res => res.json())
+            data: { me },
+          } = await fetch("http://localhost:5000", options)
+            .then((res) => res.json())
             .catch(console.error);
-
           if (me) {
             request.http.headers.set("Authorization", context.Authorization);
             request.http.headers.set("user-email", me.email);
           }
         }
         request.http.headers.set("app-id", "rowdy");
-      }
+      },
     });
-  }
+  },
 });
 
 (async () => {
-  const { schema, executor } = await gateway.load();
-
   const context = ({ req }) => ({ Authorization: req.headers.authorization });
 
-  const server = new ApolloServer({ schema, executor, context });
+  const server = new ApolloServer({ gateway, subscriptions: false, context });
 
   server.listen(process.env.PORT).then(({ url }) => {
-    console.log(
-      `    🌄  🌅  🌆  🌉  🌌   - Rowdy Gateway API running at: ${url}`
-    );
+    console.log(`\n\n\n🌄`);
+    console.log(`🌅 🌅`);
+    console.log(`🌆 🌆 🌆`);
+    console.log(`🌄 🌅 🌆 🌉 🌌   Rowdy Gateway API `);
+    console.log(`🌉 🌉 🌉      running at: ${url}`);
+    console.log(`🌌 🌌`);
+    console.log(`🌄 \n\n\n`);
   });
 })();
