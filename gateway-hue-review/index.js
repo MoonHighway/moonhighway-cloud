@@ -5,7 +5,7 @@ const fetch = require("node-fetch");
 const gateway = new ApolloGateway({
   serviceList: [
     { name: "users", url: "http://localhost:5000" },
-    // { name: "reviews", url: "http://localhost:4001" },
+    { name: "reviews", url: "http://localhost:5002" },
     { name: "colors", url: "http://localhost:5001" },
   ],
   introspectionHeaders: {
@@ -50,9 +50,12 @@ const start = async () => {
   const server = new ApolloServer({ schema, executor, context });
 
   server.listen(process.env.PORT).then(({ url }) => {
-    console.log(
-      `      🎨  🖍  👩‍💻  ✅   - The Hue Review Gateway API running at ${url}`
-    );
+    console.log(`\n\n🖍`);
+    console.log(`🖍 🖍`);
+    console.log(`🎨🎨🎨      The Hue Review Gateway API`);
+    console.log(`👨‍👨‍👧‍👦    running at ${url}`);
+    console.log(`⭐️⭐ `);
+    console.log(`⭐️ \n\n\n`);
   });
 };
 

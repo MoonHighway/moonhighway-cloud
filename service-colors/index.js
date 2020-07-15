@@ -15,13 +15,16 @@ const start = async () => {
         resolvers,
         typeDefs: gql`
           ${typeDefs}
-        `
-      }
-    ])
+        `,
+      },
+    ]),
   });
 
   server.listen(process.env.PORT).then(({ url }) => {
-    console.log(`       🎨 🖍  - Color service running at: ${url}`);
+    console.log(`\n\n\n🎨 🎨 🎨    Color service`);
+    console.log(`🖍 🖍 🖍       running at: ${url}`);
+    console.log(`🖍 🖍`);
+    console.log(`🖍\n\n\n`);
   });
 };
 

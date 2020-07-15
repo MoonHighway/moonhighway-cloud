@@ -16,12 +16,15 @@ const start = async () => {
         resolvers,
         typeDefs: gql`
           ${typeDefs}
-        `
-      }
-    ])
+        `,
+      },
+    ]),
   });
   server.listen(process.env.PORT).then(({ url }) => {
-    console.log(`     👨‍👨‍👧‍👦   - Account service running at: ${url}`);
+    console.log(`\n\n\n     👨‍ `);
+    console.log(`     👨‍👨‍      Account service`);
+    console.log(`     👨‍👨‍👧‍    running at: ${url}`);
+    console.log(`     👨‍👨‍👧‍👦 \n\n\n`);
   });
 };
 
