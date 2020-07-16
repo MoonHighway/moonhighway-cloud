@@ -2,6 +2,8 @@
 
 A sample cloud of examples built on Apollo Federation.
 
+![MH Cloud Diagram](https://github.com/MoonHighway/moonhighway-cloud/blob/master/MH_Cloud_Diagram.png)
+
 ## Test Operations for the Hue Review
 
 ### Create an Account or Login
