@@ -1,2 +1,3 @@
 .vscode/
 /bucket/*.jpg
+.DS_Store
