@@ -1,1 +1,20 @@
-[]
+[
+  {
+    "id": "UQ1vf4LHj",
+    "title": "My yots",
+    "value": "#FF0000",
+    "created": "2021-03-31T23:18:28.193Z",
+    "createdBy": {
+      "email": "alex@moonhighway.com"
+    }
+  },
+  {
+    "id": "Q4E16bWsR",
+    "title": "Greek Goblin",
+    "value": "#FFFF00",
+    "created": "2021-03-31T23:18:45.260Z",
+    "createdBy": {
+      "email": "alex@moonhighway.com"
+    }
+  }
+]

@@ -17,6 +17,7 @@
     "@apollo/gateway": "^0.17.0",
     "apollo-server": "^2.15.1",
     "dotenv": "^8.2.0",
+    "force": "^0.0.3",
     "graphql": "^15.3.0",
     "node-fetch": "^2.6.1"
   }
