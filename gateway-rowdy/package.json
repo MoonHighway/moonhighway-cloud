@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@apollo/gateway": "^0.17.0",
-    "apollo-server": "^2.15.1",
+    "apollo-server": "^2.25.3",
     "dotenv": "^8.2.0",
     "graphql": "^15.3.0",
     "node-fetch": "^2.6.1"
