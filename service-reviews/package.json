@@ -20,6 +20,6 @@
     "dotenv": "^8.2.0",
     "graphql": "^15.3.0",
     "ioredis": "^4.17.3",
-    "minimist": "^1.2.5"
+    "minimist": "^1.2.6"
   }
 }
