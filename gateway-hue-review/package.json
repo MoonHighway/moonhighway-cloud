@@ -19,6 +19,6 @@
     "dotenv": "^8.2.0",
     "force": "^0.0.3",
     "graphql": "^15.3.0",
-    "node-fetch": "^2.6.1"
+    "node-fetch": "^2.6.7"
   }
 }
